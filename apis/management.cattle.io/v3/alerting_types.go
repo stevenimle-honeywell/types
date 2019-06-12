@@ -260,22 +260,24 @@ type Notifier struct {
 type NotifierSpec struct {
 	ClusterName string `json:"clusterName" norman:"type=reference[cluster]"`
 
-	DisplayName     string           `json:"displayName,omitempty" norman:"required"`
-	Description     string           `json:"description,omitempty"`
-	SMTPConfig      *SMTPConfig      `json:"smtpConfig,omitempty"`
-	SlackConfig     *SlackConfig     `json:"slackConfig,omitempty"`
-	PagerdutyConfig *PagerdutyConfig `json:"pagerdutyConfig,omitempty"`
-	WebhookConfig   *WebhookConfig   `json:"webhookConfig,omitempty"`
-	WechatConfig    *WechatConfig    `json:"wechatConfig,omitempty"`
+	DisplayName                 string                       `json:"displayName,omitempty" norman:"required"`
+	Description                 string                       `json:"description,omitempty"`
+	SMTPConfig                  *SMTPConfig                  `json:"smtpConfig,omitempty"`
+	SlackConfig                 *SlackConfig                 `json:"slackConfig,omitempty"`
+	PagerdutyConfig             *PagerdutyConfig             `json:"pagerdutyConfig,omitempty"`
+	WebhookConfig               *WebhookConfig               `json:"webhookConfig,omitempty"`
+	MicrosoftTeamsWebhookConfig *MicrosoftTeamsWebhookConfig `json:"microsoftTeamsWebhookConfig,omitempty"`
+	WechatConfig                *WechatConfig                `json:"wechatConfig,omitempty"`
 }
 
 type Notification struct {
-	Message         string           `json:"message,omitempty"`
-	SMTPConfig      *SMTPConfig      `json:"smtpConfig,omitempty"`
-	SlackConfig     *SlackConfig     `json:"slackConfig,omitempty"`
-	PagerdutyConfig *PagerdutyConfig `json:"pagerdutyConfig,omitempty"`
-	WebhookConfig   *WebhookConfig   `json:"webhookConfig,omitempty"`
-	WechatConfig    *WechatConfig    `json:"wechatConfig,omitempty"`
+	Message                     string                       `json:"message,omitempty"`
+	SMTPConfig                  *SMTPConfig                  `json:"smtpConfig,omitempty"`
+	SlackConfig                 *SlackConfig                 `json:"slackConfig,omitempty"`
+	PagerdutyConfig             *PagerdutyConfig             `json:"pagerdutyConfig,omitempty"`
+	WebhookConfig               *WebhookConfig               `json:"webhookConfig,omitempty"`
+	MicrosoftTeamsWebhookConfig *MicrosoftTeamsWebhookConfig `json:"microsoftTeamsWebhookConfig,omitempty"`
+	WechatConfig                *WechatConfig                `json:"wechatConfig,omitempty"`
 }
 
 type SMTPConfig struct {
@@ -300,6 +302,11 @@ type PagerdutyConfig struct {
 }
 
 type WebhookConfig struct {
+	URL string `json:"url,omitempty" norman:"required"`
+	*HTTPClientConfig
+}
+
+type MicrosoftTeamsWebhookConfig struct {
 	URL string `json:"url,omitempty" norman:"required"`
 	*HTTPClientConfig
 }
